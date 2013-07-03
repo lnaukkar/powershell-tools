@@ -9,7 +9,7 @@ Get-ChildItem -Path $workspacePath -Filter *.xml | ForEach-Object {
   $document.Activate()
   $wordApplication.Selection.Font.Name = "Arial"
   $wordApplication.Selection.Font.Size = "10"
-  $wordApplication.Selection.TypeText(((Get-Content $_) -join "`r`n"))
+  $wordApplication.Selection.TypeText(((Get-Content $_ -encoding "UTF8") -join "`r`n"))
   $wordApplication.Selection.TypeParagraph()
   $pdfPath = "$($_.DirectoryName)\$($_.BaseName).pdf"
   $document.SaveAs([ref] $pdfPath, [ref] 17)
